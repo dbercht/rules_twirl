@@ -18,7 +18,7 @@ play_imports = [
   "play.api.data._",
 ]
 
-TwirlInfo = provider(fields = {"files": "The files created by this target."})
+TwirlInfo = JavaInfo(fields = {"files": "The files created by this target."})
 
 def _format_map_arg(format):
   return "{}={}".format(*format)
