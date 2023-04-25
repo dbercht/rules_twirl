@@ -18,6 +18,8 @@ play_imports = [
   "play.api.data._",
 ]
 
+TwirlInfo = provider(fields = {"files": "The files created by this target."})
+
 def _format_map_arg(format):
   return "{}={}".format(*format)
 
@@ -58,7 +60,7 @@ def _impl(ctx):
     outputs.append(output)
 
   return [
-    DefaultInfo(files = depset(outputs))
+    TwirlInfo(files = depset(outputs))
   ]
 
 twirl_templates = rule(
@@ -83,6 +85,12 @@ twirl_templates = rule(
       doc = "If true, include the imports the Play project includes by default.",
       default = False
     ),
+    "twirl_compiler": attr.label(
+      executable = True,
+      cfg = "host",
+      allow_files = True,
+      default = Label("//compiler-cli"),
+    ),
     "template_formats": attr.string_dict(
       doc = """
 Formatter types for file extensions.
@@ -95,12 +103,6 @@ The default formats are
 "js" -> "play.twirl.api.JavaScriptFormat"
 ```
 """
-    ),
-    "twirl_compiler": attr.label(
-      executable = True,
-      cfg = "host",
-      allow_files = True,
-      default = Label("//compiler-cli"),
     )
   },
 )
