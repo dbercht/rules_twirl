@@ -64,6 +64,7 @@ def _impl(ctx):
 
 twirl_templates = rule(
   implementation = _impl,
+  provides = [JavaInfo],
   doc = "Compiles Twirl templates to Scala sources files.",
   attrs = {
     "source_directory": attr.label(
