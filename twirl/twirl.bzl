@@ -58,7 +58,8 @@ def _impl(ctx):
     outputs.append(output)
 
   return [
-    JavaInfo(files = depset(outputs))
+    provider(files = depset(outputs)),
+    JavaInfo
   ]
 
 twirl_templates = rule(
