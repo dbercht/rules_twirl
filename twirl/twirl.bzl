@@ -72,6 +72,7 @@ twirl_templates = rule(
     ),
     "srcs": attr.label_list(
       doc = "The actual template files contained in the source_directory.",
+      providers = [JavaInfo],
       allow_files = True,
        mandatory = True
      ),
