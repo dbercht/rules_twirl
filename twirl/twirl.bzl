@@ -18,8 +18,6 @@ play_imports = [
   "play.api.data._",
 ]
 
-TwirlInfo = JavaInfo(fields = {"files": "The files created by this target."})
-
 def _format_map_arg(format):
   return "{}={}".format(*format)
 
@@ -60,7 +58,7 @@ def _impl(ctx):
     outputs.append(output)
 
   return [
-    TwirlInfo(files = depset(outputs))
+    JavaInfo(files = depset(outputs))
   ]
 
 twirl_templates = rule(
