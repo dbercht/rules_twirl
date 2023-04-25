@@ -58,7 +58,7 @@ def _impl(ctx):
     outputs.append(output)
 
   return [
-    provider(files = depset(outputs)),
+    DefaultInfo(files = depset(outputs)),
     JavaInfo
   ]
 
